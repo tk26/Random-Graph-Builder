@@ -23,12 +23,18 @@ for i in range(0, pool):
 		if f not in friends[i] and f != i and i not in friends[f]:
 			friends[i].append(f)
 
+with open("names.txt") as f:
+    content = f.readlines()
+content = [x.strip('\n') for x in content]
+content = [x.strip(' ') for x in content]
+content = list(set(content))
+
 for i in range(0, len(friends)):
 	if len(friends[i]) > 0:
-		output += chr(i+97)
+		output += content[i]
 		for j in friends[i]:
 			output += " "
-			output += chr(j+97)
+			output += content[j]
 		output += "\n"
 
 text_file = open("myfriends_tk.txt", "w")
